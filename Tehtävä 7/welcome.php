@@ -1,3 +1,7 @@
+<?php
+$notes = file_get_contents("notes.txt");
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -10,10 +14,10 @@
 <body>
     <div class="container">
         <div class="left_Side">
-            <h1>Note!</h1><i class='bx bx-note' ></i><br>
+            <h1>Note!</h1><i class='bx bx-note'></i><br>
             <p>Add a note here.</p><br>
             <div class="form-container">
-                <form action="add_note.php" method="post" enctype="multipart/form-data">
+                <form action="process-notes.php" method="post" enctype="multipart/form-data">
                     <label for="title">Title:</label>
                     <input type="text" id="title" name="title" required><br>
                     <label for="description">Description:</label>
@@ -23,6 +27,11 @@
                     <button type="submit" class="btn">Add a note</button>
                 </form>
             </div>
+        </div>
+
+        <div class="right_Side">
+            <h1>Noteboard</h1>
+
         </div>
     </div>
 </body>

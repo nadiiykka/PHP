@@ -1,4 +1,5 @@
 <?php
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -16,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($isAuthenticated) {
         header("Location: welcome.php");
         exit();
-        
+
     } else {
         echo "Wrong username or password!";
     }

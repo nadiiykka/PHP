@@ -12,7 +12,7 @@
     <div class="wrapper">
         <h1>Sign up</h1>
 
-        <form action="process-signuo.php" method="post">
+        <form action="process-signup.php" method="post">
             <div class="input-box">
                 <input type="text" id="name" name="name" placeholder="Name" required>
                 <i class='bx bxs-user' ></i>
