@@ -1,50 +1,22 @@
 <?php
-session_start();
-include "db_conn.php";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-if (isset($_POST["unname"]) && isset($_POST["password"])) {
-    function validate($data)
-    {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return data;
+    $users = json_decode(file_get_contents('users.json'), true);
+
+    $isAuthenticated = false;
+    foreach ($users as $user) {
+        if ($user['username'] == $username && $user['password'] == $password) {
+            $isAuthenticated = true;
+            break;
+        }
+    }
+
+    if ($isAuthenticated) {
+        echo "Login successfully!";
+    } else {
+        echo "Wrong username or password!";
     }
 }
-
-$uname = validate($_POST["uname"]);
-$password = validate($_POST["password"]);
-
-if (empty($uname)) {
-    header("Location: index.php?erro=User Name is required");
-    exit();
-}
-else if (empty($pass)) {
-    header("Location: index.php?erro=Password is required");
-    exit();
-}
-
-$sql = "SELECT * FROM users WHERE user_name='$uname' AND password='$pass'";
-
-$result = mysqli_query($conn, $sql);
-
-if(mysqli_num_rows($result) === 1) {
-    $row = mysqli_fetch_array($result);
-
-    if ($row["user_name"] === $uname && $row['password'] === $pass) {
-        echo "Logged In!";
-        $_SESSION["username"] = $row["username"];
-        $_SESSION["name"] = $row["name"];
-        $_SESSION["id"] = $row["id"];
-        header("Location: home.php");
-        exit();
-    }
-    else {
-        header("Location: index.php");
-        exit();
-    }
-}
-else {
-    header("Location: index.php");
-    exit();
-}
+?>

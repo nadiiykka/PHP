@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  </head>
+  <body>
+    <div class="wrapper">
+        <form action="login.php" method="POST">
+            <h1>Login</h1>
+            <div class="input-box">
+                <input type="text" name="username" placeholder="Username" required>
+                <i class='bx bxs-user' ></i>
+            </div>
+            <div class="input-box">
+                <input type="password" name="password" placeholder="Password" required>
+                <i class='bx bxs-lock-alt' ></i>
+            </div>
 
-<head>
-    <title> LOGIN </title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
+            <button type="submit" class="btn">Login</button>
 
-<body>
-    <form action="login.php" method="post">
-        <h2>LOGIN</h2>
-        <?php if(isset($_GET["error"])) { ?>
-            <p class="error"> <?php echo $_GET["error"]; ?></p>
-        <?php } ?>
-        <label> User Name</label>
-        <input type="text" name="uname" placeholder="User Name"><br>
-        <label> User Name</label>
-        <input type="password" name="password" placeholder="Password"><br>
-
-        <button type="submit">Login</button>
-    </form>
-</body>
-
+            <div class="register-link">
+                <p>Don't have an account? <a href="signup.php">Register</a></p>
+            </div>
+        </form>
+    </div>
+  </body>
 </html>
