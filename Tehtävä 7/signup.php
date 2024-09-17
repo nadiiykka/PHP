@@ -1,37 +1,45 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Signup</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
+
 <body>
+    <div class="wrapper">
+        <h1>Sign up</h1>
 
-    <h1>Signup</h1>
+        <form action="process-signuo.php" method="post">
+            <div class="input-box">
+                <input type="text" id="name" name="name" placeholder="Name" required>
+                <i class='bx bxs-user' ></i>
+            </div>
 
-    <form action="process-signuo.php" method="post">
-        <div>
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name">
-        </div>
+            <div class="input-box">
+                <input type="email" id="email" name="email" placeholder="Email" required>
+                <i class='bx bxs-envelope'></i>
+            </div>
 
-        <div>
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email">
-        </div>
+            <div class="input-box">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <i class='bx bxs-lock-alt' ></i>
+            </div>
 
-        <div>
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password">
-        </div>
+            <div class="input-box">
+                <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Repeat password" required>
+                <i class='bx bxs-lock-alt' ></i>
+            </div>
 
-        <div>
-            <label for="password_confirmation">Repeat password</label>
-            <input type="password" id="password_confirmation"
-            name="password_confirmation">
-        </div>
+            <button class="btn">Sign up</button>
 
-        <button>Sign up</button>
-    </form>
+            <div class="register-link">
+                <p>Already have an account? <a href="index.php">Log in</a></p>
+            </div>
+        </form>
+    </div>
 </body>
+
 </html>

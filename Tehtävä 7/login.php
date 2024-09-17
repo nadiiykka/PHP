@@ -14,7 +14,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($isAuthenticated) {
-        echo "Login successfully!";
+        header("Location: welcome.php");
+        exit();
+        
     } else {
         echo "Wrong username or password!";
     }

@@ -8,7 +8,7 @@
   <body>
     <div class="wrapper">
         <form action="login.php" method="POST">
-            <h1>Login</h1>
+            <h1>Log in</h1>
             <div class="input-box">
                 <input type="text" name="username" placeholder="Username" required>
                 <i class='bx bxs-user' ></i>
@@ -18,10 +18,10 @@
                 <i class='bx bxs-lock-alt' ></i>
             </div>
 
-            <button type="submit" class="btn">Login</button>
+            <button type="submit" class="btn">Log in</button>
 
             <div class="register-link">
-                <p>Don't have an account? <a href="signup.php">Register</a></p>
+                <p>Don't have an account? <a href="signup.php">Sign up</a></p>
             </div>
         </form>
     </div>
