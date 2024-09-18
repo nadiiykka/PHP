@@ -6,12 +6,21 @@ $uploadedFilePath = '';
 
 if (isset($_FILES['img']) && $_FILES['img']['error'] === UPLOAD_ERR_OK) {
     $tempDir = sys_get_temp_dir();
-    $uploadedFilePath = $tempDir . '/' . basename($_FILES['img']['name']);
     
-    if (move_uploaded_file($_FILES['img']['tmp_name'], $uploadedFilePath)) {
-        echo 'Файл успішно завантажено та збережено у тимчасовій директорії: ' . $uploadedFilePath;
+    $uploadedFilePath = $tempDir . '/' . uniqid() . '_' . basename($_FILES['img']['name']);
+    
+    $fileType = mime_content_type($_FILES['img']['tmp_name']);
+    $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    
+    if (in_array($fileType, $allowedTypes)) {
+        if (move_uploaded_file($_FILES['img']['tmp_name'], $uploadedFilePath)) {
+            echo 'Файл успішно завантажено та збережено у тимчасовій директорії: ' . $uploadedFilePath;
+        } else {
+            echo 'Не вдалося завантажити файл.';
+        }
     } else {
-        echo 'Не вдалося завантажити файл.';
+        echo 'Недопустимий формат файлу.';
+        $uploadedFilePath = '';
     }
 } else {
     echo 'Файл не завантажено або сталася помилка.';
@@ -39,5 +48,4 @@ if (file_put_contents($notesFile, json_encode($notes)) === false) {
 
 header('Location: welcome.php');
 exit();
-
 ?>

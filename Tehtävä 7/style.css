@@ -211,14 +211,20 @@ input[type="file"] {
 .container .right_Side {
     position: relative;
     border-radius: 10px;
-    padding: 30px 40px;
+    margin-top: 30px;
+    margin-left: 30px;
     color: #333;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+}
+
+.right_Side h1 {
+    margin-bottom: 20px;
 }
 
 .note_container {
+    display: flex; /* Залишаємо flex для вирівнювання вмісту всередині контейнера */
+    flex-direction: column; /* Вирівнює текст і зображення вертикально всередині контейнера */
+    align-items: center; /* Центрує вміст по горизонталі всередині контейнера */
+    justify-content: center;
     position: relative;
     background: #bdcfcf;
     border-radius: 10px;
@@ -226,9 +232,9 @@ input[type="file"] {
     margin: 10px;
     color: #333;
     overflow: hidden;
-    min-width: 300px;
-    max-width: 500px;
-    height: auto;
+    min-width: 200px;
+    max-width: 300px;
+    max-height: 600px;
     flex: 1 1 30px;
 }
 
@@ -236,22 +242,26 @@ input[type="file"] {
     position: relative;
     min-width: 100%; 
     margin: 5px;
-    height: auto;    
+    height: auto;  
+    width: auto;  
+    max-width: 50px;
+    max-height: 300px;
     border-radius: 5px; 
-    transform: translateX(30%);
+    overflow: hidden;
+    flex-direction: column;
 }
 
 .note_container p {
     font-size: 16px;
     color: #333;
     font-weight: 400;
-    position: relative;
+    margin: 0;
+    margin-top: 10px;
 }
 
 .note_container a {
     font-size: 18px;
     color: #333;
     font-weight: 600;
-    position: relative;
     text-align: center;
 }
