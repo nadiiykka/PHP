@@ -1,5 +1,15 @@
 <?php
-$notes = file_get_contents("notes.txt");
+
+$notesFile = sys_get_temp_dir() . '/notes.json';
+$notes = [];
+
+if (file_exists($notesFile)) {
+    $notes = json_decode(file_get_contents($notesFile), true);
+} else {
+    echo 'Файл з нотатками не знайдено.';
+    exit();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +24,7 @@ $notes = file_get_contents("notes.txt");
 <body>
     <div class="container">
         <div class="left_Side">
-            <h1>Note!</h1><i class='bx bx-note'></i><br>
+            <h1>Note!</h1><i class='bx bx-note'></i><br><br>
             <p>Add a note here.</p><br>
             <div class="form-container">
                 <form action="process-notes.php" method="post" enctype="multipart/form-data">
@@ -23,14 +33,44 @@ $notes = file_get_contents("notes.txt");
                     <label for="description">Description:</label>
                     <textarea id="description" name="description" required></textarea><br>
                     <label for="file">Upload File:</label>
-                    <input type="file" id="file" name="file"><br>
+                    <input type="file" id="img" name="img" accept="image/*"><br>
                     <button type="submit" class="btn">Add a note</button>
+                </form>
+            </div>
+
+            <div style='margin-bottom: 70px;'></div>
+            <div class="form-container">
+            <label for="title">Manage Notes:</label>
+                <form action="delete-notes.php" method="post">
+                    <button type="submit" name="delete_all"
+                        onclick="return confirm('Are you sure you want to delete all notes and files?');">Delete All
+                        Notes</button>
                 </form>
             </div>
         </div>
 
         <div class="right_Side">
             <h1>Noteboard</h1>
+            <div style='margin-bottom: 40px;'></div>
+
+            <?php if (empty($notes)): ?>
+                <p>No notes available.</p>
+            <?php else: ?>
+                <?php foreach ($notes as $note): ?>
+                    <div class="note_container">
+                        <a><?php echo htmlspecialchars($note['title']); ?></a><br><br>
+                        <?php if (!empty($note['img']) && file_exists($note['img'])): ?>
+                            <img src="<?php echo htmlspecialchars($note['img']); ?>"
+                                alt="<?php echo htmlspecialchars($note['title']); ?>" style="max-width: 100%; height: auto;">
+                        <?php else: ?>
+                            <p></p>
+                        <?php endif; ?>
+                        <br>
+                        <p><?php echo htmlspecialchars($note['description']); ?></p>
+
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
 
         </div>
     </div>
