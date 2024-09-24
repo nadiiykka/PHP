@@ -40,29 +40,36 @@ if (file_exists($notesFile)) {
                 <label for="title">Manage Notes:</label>
                 <form action="delete-notes.php" method="post">
                     <button type="submit" name="delete_all"
-                        onclick="return confirm('Are you sure you want to delete all notes?');">Delete All Notes</button>
+                        onclick="return confirm('Are you sure you want to delete all notes?');">Delete All
+                        Notes</button>
                 </form>
             </div>
         </div>
 
         <div class="right_Side">
-            <h1>Noteboard</h1><br>
+            <h1>Noteboard</h1>
+            <form action="account.php" method="post">
+                <button type="submit" name="logout"
+                    onclick="return"><i class='bx bxs-user'></i></button>
+            </form>
             <br>
             <?php if (empty($notes)): ?>
                 <p>No notes available.</p>
             <?php else: ?>
-                <?php foreach ($notes as $note): ?>
-                    <div class="note_container">
-                        <a><?php echo htmlspecialchars($note['title']); ?></a>
-                        <?php if (!empty($note['img']) && file_exists($note['img'])): ?>
-                            <img src="image.php?file=<?php echo urlencode(basename($note['img'])); ?>"
-                                alt="<?php echo htmlspecialchars($note['title']); ?>">
-                        <?php else: ?>
-                            <p></p>
-                        <?php endif; ?>
-                        <p><?php echo htmlspecialchars($note['description']); ?></p>
-                    </div>
-                <?php endforeach; ?>
+                <div class="noteboard">
+                    <?php foreach ($notes as $note): ?>
+                        <div class="note_container">
+                            <a><?php echo htmlspecialchars($note['title']); ?></a>
+                            <?php if (!empty($note['img']) && file_exists($note['img'])): ?>
+                                <img src="image.php?file=<?php echo urlencode(basename($note['img'])); ?>"
+                                    alt="<?php echo htmlspecialchars($note['title']); ?>">
+                            <?php else: ?>
+                                <p class="noimage"></p>
+                            <?php endif; ?>
+                            <p><?php echo htmlspecialchars($note['description']); ?></p>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
             <?php endif; ?>
         </div>
     </div>
