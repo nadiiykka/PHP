@@ -1,57 +1,63 @@
 <?php
-
-if (empty($_POST["name"])) {
-    die("Name is required");
-}
-
-if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
-    die("Valid email is required");
-}
+session_start();
 
 if (strlen($_POST["password"]) < 8) {
-    die("Password must be at least 8 characters");
+    $_SESSION['error1'] = 'Password must be at least 8 characters!';
+    header('Location: signup.php');
+    exit();
 }
 
 if (!preg_match("/[a-z]/i", $_POST["password"])) {
-    die("Password must contain at least one letter");
+    $_SESSION['error1'] = 'Password must contain at least one letter!';
+    header('Location: signup.php');
+    exit();
 }
 
 if (!preg_match("/[0-9]/", $_POST["password"])) {
-    die("Password must contain at least one number");
+    $_SESSION['error1'] = 'Password must contain at least one number!';
+    header('Location: signup.php');
+    exit();
 }
 
 if ($_POST["password"] !== $_POST["password_confirmation"]) {
-    die("Passwords must match");
+    $_SESSION['error1'] = 'Passwords must match!';
+    header('Location: signup.php');
+    exit();
 }
-
-$password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
 $json_file = __DIR__ . "/users.json";
 
+$users = [];
 if (file_exists($json_file)) {
     $json_data = file_get_contents($json_file);
-    $users = json_decode($json_data, true);
+    if ($json_data !== false) {
+        $users = json_decode($json_data, true);
+    }
 } else {
-    $users = [];
+    echo "File doesn't exist.";
+    exit();
 }
 
 foreach ($users as $user) {
-    if ($user['email'] === $_POST["email"]) {
-        die("Email already taken");
+    if ($user['username'] === $_POST["username"]) {
+        $_SESSION['error1'] = 'Username already taken.';
+        header('Location: signup.php');
+        exit();
     }
 }
 
 $new_user = [
-    "name" => $_POST["name"],
-    "email" => $_POST["email"],
-    "password_hash" => $password_hash
+    "username" => $_POST["username"],
+    "password" => $_POST["password"]
 ];
 
 $users[] = $new_user;
 
-file_put_contents($json_file, json_encode($users, JSON_PRETTY_PRINT));
+if (file_put_contents($json_file, json_encode($users, JSON_PRETTY_PRINT)) === false) {
+    echo "Failed to save user data.";
+    exit();
+}
 
-header("Location: signup-success.html");
+header("Location: index.php");
 exit;
-
 ?>

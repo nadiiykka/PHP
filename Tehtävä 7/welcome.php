@@ -40,7 +40,7 @@ if (file_exists($notesFile)) {
                 <label for="title">Manage Notes:</label>
                 <form action="delete-notes.php" method="post">
                     <button type="submit" name="delete_all"
-                        onclick="return confirm('Are you sure you want to delete all notes and files?');">Delete All Notes</button>
+                        onclick="return confirm('Are you sure you want to delete all notes?');">Delete All Notes</button>
                 </form>
             </div>
         </div>
