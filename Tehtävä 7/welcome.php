@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $notesFile = sys_get_temp_dir() . '/notes.json';
 $notes = [];
 
@@ -49,9 +51,14 @@ if (file_exists($notesFile)) {
         <div class="right_Side">
             <h1>Noteboard</h1>
             <form action="account.php" method="post">
-                <button type="submit" name="logout"
-                    onclick="return"><i class='bx bxs-user'></i></button>
+                <button type="submit" name="account" onclick="return"><i class='bx bxs-user'></i></button>
             </form>
+            <?php if (isset($_SESSION['account'])): ?>
+                <div class="account">
+                    <p><?php echo $_SESSION['account']; ?></p>
+                    <?php unset($_SESSION['account']); ?>
+                </div>
+            <?php endif; ?>
             <br>
             <?php if (empty($notes)): ?>
                 <p>No notes available.</p>
