@@ -51,12 +51,13 @@ if (file_exists($notesFile)) {
         <div class="right_Side">
             <h1>Noteboard</h1>
             <form action="account.php" method="post">
-                <button type="submit" name="account" onclick="return"><i class='bx bxs-user'></i></button>
+                <button type="submit" name="account"><i class='bx bxs-user'></i></button>
             </form>
-            <?php if (isset($_SESSION['account'])): ?>
+
+            <?php if (isset($_SESSION['accountVisible']) && $_SESSION['accountVisible']): ?>
                 <div class="account">
-                    <p><?php echo $_SESSION['account']; ?></p>
-                    <?php unset($_SESSION['account']); ?>
+                    <p>Welcome to your account!</p>
+                    <a href="logout.php"><button onclick="return confirm('Are you sure you want to log out?');">Logout</button></a>
                 </div>
             <?php endif; ?>
             <br>

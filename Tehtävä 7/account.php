@@ -1,8 +1,12 @@
 <?php
 session_start();
 
-$_SESSION['account'] = 'Your account!';
+if (isset($_SESSION['accountVisible'])) {
+    unset($_SESSION['accountVisible']);  
+} else {
+    $_SESSION['accountVisible'] = true;  
+}
+
 header('Location: welcome.php');
 exit();
-
 ?>
