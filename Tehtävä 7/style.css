@@ -216,8 +216,7 @@ input[type="file"] {
     color: #333;
 }
 
-.right_Side .account
-{
+.right_Side .account {
     background: #bdcfcf;
     position: absolute;
     border-radius: 10px;
@@ -231,8 +230,7 @@ input[type="file"] {
     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
 }
 
-.account p
-{
+.account p {
     font-size: 18px;
     color: #333;
     font-weight: 500;
@@ -265,8 +263,7 @@ input[type="file"] {
     margin: autp;
 }
 
-.noteboard
-{
+.noteboard {
     display: flex;
     flex-flow: row wrap;
 }
@@ -274,7 +271,7 @@ input[type="file"] {
 .note_container {
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
     position: relative;
     background: #bdcfcf;
@@ -291,12 +288,12 @@ input[type="file"] {
 
 .note_container img {
     position: relative;
-    min-width: 100%; 
+    min-width: 100%;
     margin: 5px;
-    height: auto;  
+    height: auto;
     max-width: 50px;
     max-height: 400px;
-    border-radius: 5px; 
+    border-radius: 5px;
     overflow: hidden;
 }
 
@@ -307,7 +304,7 @@ input[type="file"] {
     margin: 0;
     margin-top: 10px;
     display: block;
-    white-space: normal; 
+    white-space: normal;
     overflow-wrap: break-word;
 }
 
@@ -317,6 +314,6 @@ input[type="file"] {
     font-weight: 600;
     text-align: center;
     display: block;
-    white-space: normal; 
+    white-space: normal;
     overflow-wrap: break-word;
 }
