@@ -57,7 +57,7 @@ if (file_exists($notesFile)) {
             <?php if (isset($_SESSION['accountVisible']) && $_SESSION['accountVisible']): ?>
                 <div class="account">
                     <p>Welcome to your account!</p>
-                    <a href="logout.php"><button onclick="return confirm('Are you sure you want to log out?');">Logout</button></a>
+                    <a href="logout.php"><button onclick="return confirm('Are you sure you want to sign out?');">Sign out</button></a>
                 </div>
             <?php endif; ?>
             <br>
