@@ -35,6 +35,8 @@ if (file_exists($notesFile)) {
                     <textarea id="description" name="description" required></textarea><br>
                     <label for="img">Upload Picture:</label>
                     <input type="file" id="img" name="img" accept="image/*"><br>
+                    <label for="bgcolor">Choose Note Color:<a style="margin-right: 230px;"></a>
+                    <input type="color" id="bgcolor" name="bgcolor" value="#bdcfcf"></label><br>
                     <button type="submit" class="btn">Add a note</button>
                 </form>
             </div>
@@ -59,7 +61,8 @@ if (file_exists($notesFile)) {
             <?php if (isset($_SESSION['accountVisible']) && $_SESSION['accountVisible']): ?>
                 <div class="account">
                     <p>Welcome to your account!</p>
-                    <a href="logout.php"><button onclick="return confirm('Are you sure you want to sign out?');">Sign out</button></a>
+                    <a href="logout.php"><button onclick="return confirm('Are you sure you want to sign out?');">Sign
+                            out</button></a>
                 </div>
             <?php endif; ?>
             <br>
@@ -68,8 +71,9 @@ if (file_exists($notesFile)) {
             <?php else: ?>
                 <div class="noteboard">
                     <?php foreach ($notes as $note): ?>
-                        <div class="note_container">
-                        <div class="name"><?php echo htmlspecialchars($note['username'] ?? 'Guest'); ?></div>
+                        <div class="note_container"
+                            style="background-color: <?php echo htmlspecialchars($note['bgcolor'] ?? '#bdcfcf'); ?>;">
+                            <div class="name"><?php echo htmlspecialchars($note['username'] ?? 'Guest'); ?></div>
                             <a><?php echo htmlspecialchars($note['title']); ?></a>
                             <?php if (!empty($note['img']) && file_exists($note['img'])): ?>
                                 <img src="image.php?file=<?php echo urlencode(basename($note['img'])); ?>"

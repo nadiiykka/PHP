@@ -5,6 +5,7 @@ session_start();
 $title = $_POST['title'];
 $description = $_POST['description'];
 $uploadedFilePath = '';
+$bgcolor = $_POST['bgcolor'];
 $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
 
 if (isset($_FILES['img']) && $_FILES['img']['error'] === UPLOAD_ERR_OK) {
@@ -40,7 +41,8 @@ $newNote = [
     'title' => $title,
     'description' => $description,
     'img' => $uploadedFilePath,
-    'username' => $username
+    'username' => $username,
+    'bgcolor' => $bgcolor
 ];
 
 $notes[] = $newNote;
