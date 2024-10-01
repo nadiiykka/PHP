@@ -28,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($isAuthenticated) {
         session_regenerate_id();
         $_SESSION['username'] = $username;
+        error_log("Username set in session: " . $_SESSION['username']);
         header("Location: welcome.php");
         exit();
     } else {

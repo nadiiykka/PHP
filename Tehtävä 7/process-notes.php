@@ -1,8 +1,11 @@
 <?php
 
+session_start();
+
 $title = $_POST['title'];
 $description = $_POST['description'];
 $uploadedFilePath = '';
+$username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
 
 if (isset($_FILES['img']) && $_FILES['img']['error'] === UPLOAD_ERR_OK) {
     $tempDir = sys_get_temp_dir();
@@ -36,7 +39,8 @@ if (file_exists($notesFile)) {
 $newNote = [
     'title' => $title,
     'description' => $description,
-    'img' => $uploadedFilePath
+    'img' => $uploadedFilePath,
+    'username' => $username
 ];
 
 $notes[] = $newNote;

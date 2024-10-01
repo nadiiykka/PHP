@@ -2,6 +2,8 @@
 
 session_start();
 
+$username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
+
 $notesFile = sys_get_temp_dir() . '/notes.json';
 $notes = [];
 
@@ -67,6 +69,7 @@ if (file_exists($notesFile)) {
                 <div class="noteboard">
                     <?php foreach ($notes as $note): ?>
                         <div class="note_container">
+                        <div class="name"><?php echo htmlspecialchars($note['username'] ?? 'Guest'); ?></div>
                             <a><?php echo htmlspecialchars($note['title']); ?></a>
                             <?php if (!empty($note['img']) && file_exists($note['img'])): ?>
                                 <img src="image.php?file=<?php echo urlencode(basename($note['img'])); ?>"
