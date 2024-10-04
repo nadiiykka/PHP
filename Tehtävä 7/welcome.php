@@ -66,6 +66,7 @@ if (file_exists($notesFile)) {
                 </div>
             <?php endif; ?>
             <br>
+
             <?php if (empty($notes)): ?>
                 <p>No notes available.</p>
             <?php else: ?>
